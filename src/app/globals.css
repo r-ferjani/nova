@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   NOVA PRIME SERVICES ApS — Design tokens
+   Palette derived from the supplied logo (steel blue #0B4B80 →
+   #67AAD7) with a fresh teal accent signalling cleanliness.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
+    serif;
+
+  /* Brand blue — anchored on the logo's core blue */
+  --color-brand-50: #eaf3fa;
+  --color-brand-100: #cde4f4;
+  --color-brand-200: #a6cede;
+  --color-brand-300: #72afd6;
+  --color-brand-400: #428abd;
+  --color-brand-500: #246da2;
+  --color-brand-600: #1a5791;
+  --color-brand-700: #16477b;
+  --color-brand-800: #143864;
+  --color-brand-900: #102945;
+  --color-brand-950: #0b1b2f;
+
+  /* Ink — deep navy used for text and dark surfaces */
+  --color-ink-50: #f3f6f8;
+  --color-ink-100: #e5ebef;
+  --color-ink-200: #cdd9e0;
+  --color-ink-300: #a8bcc8;
+  --color-ink-400: #7a939f;
+  --color-ink-500: #58717e;
+  --color-ink-600: #41545f;
+  --color-ink-700: #2f404a;
+  --color-ink-800: #1d2c34;
+  --color-ink-900: #12202a;
+  --color-ink-950: #0a141b;
+
+  /* Teal — the "freshness" accent */
+  --color-teal-50: #eafaf7;
+  --color-teal-100: #cdf3ec;
+  --color-teal-200: #a2e6db;
+  --color-teal-300: #6dd3c8;
+  --color-teal-400: #38b8ad;
+  --color-teal-500: #1a9c92;
+  --color-teal-600: #11837b;
+  --color-teal-700: #106862;
+  --color-teal-800: #0f5350;
+  --color-teal-900: #0d4343;
+
+  /* Gold — used very sparingly for warm highlights */
+  --color-gold-300: #f5d99f;
+  --color-gold-400: #edc071;
+  --color-gold-500: #dfa448;
+  --color-gold-600: #c2872f;
+
+  /* Neutrals */
+  --color-paper: #ffffff;
+  --color-offwhite: #f7f9f8;
+  --color-mist: #eef2f1;
+  --color-line: #e2e8e6;
+  --color-line-strong: #cdd7d4;
+
+  /* Fluid type scale */
+  --text-display: clamp(2.625rem, 6.2vw, 4.5rem) / 1.03;
+  --text-headline: clamp(1.875rem, 3.9vw, 3rem) / 1.08;
+  --text-title: clamp(1.375rem, 2.3vw, 1.875rem) / 1.18;
+  --text-lead: clamp(1.03125rem, 1.35vw, 1.1875rem) / 1.65;
+  --text-body: 1rem / 1.68;
+  --text-caption: 0.8125rem / 1.5;
+
+  /* Letter-spacing tokens */
+  --tracking-tightish: -0.02em;
+  --tracking-snug: -0.012em;
+  --tracking-eyebrow: 0.16em;
+
+  /* Radii */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.75rem;
+
+  /* Premium shadows */
+  --shadow-soft: 0 1px 2px rgba(16, 41, 69, 0.04),
+    0 4px 14px -4px rgba(16, 41, 69, 0.08);
+  --shadow-lift: 0 2px 4px rgba(16, 41, 69, 0.05),
+    0 18px 40px -12px rgba(16, 41, 69, 0.18);
+  --shadow-glow: 0 20px 60px -18px rgba(26, 87, 145, 0.45);
+  --shadow-inset-line: inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  :root {
+    --header-height: 4.5rem;
+    color-scheme: light;
+  }
+
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* keep anchored sections clear of the sticky header */
+    scroll-padding-top: calc(var(--header-height) + 1.25rem);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-offwhite);
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: var(--tracking-snug);
+    color: var(--color-ink-950);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-brand-950);
+  }
+
+  /* Visible, on-brand focus ring for keyboard users */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-paper), 0 0 0 4px var(--color-brand-600);
+    border-radius: 0.375rem;
+  }
+
+  :focus-visible:where(a, button, [role="button"]) {
+    box-shadow: 0 0 0 2px var(--color-paper), 0 0 0 4px var(--color-teal-500);
+  }
+
+  fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 75rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-brand-700);
+  }
+
+  /* Subtle grain-free gradient mesh used on dark sections */
+  .surface-navy {
+    background-color: var(--color-brand-950);
+    background-image:
+      radial-gradient(
+        900px 480px at 88% -8%,
+        rgba(56, 184, 173, 0.22),
+        transparent 62%
+      ),
+      radial-gradient(
+        760px 520px at 4% 104%,
+        rgba(38, 109, 162, 0.42),
+        transparent 66%
+      );
+  }
+
+  .surface-paper {
+    background-color: var(--color-offwhite);
+    background-image: linear-gradient(
+      180deg,
+      var(--color-paper),
+      var(--color-offwhite)
+    );
+  }
+
+  /* Animated gradient text used once, in the hero */
+  .text-shimmer {
+    background: linear-gradient(
+      100deg,
+      var(--color-brand-800) 0%,
+      var(--color-brand-600) 30%,
+      var(--color-teal-500) 55%,
+      var(--color-brand-600) 78%,
+      var(--color-brand-800) 100%
+    );
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 9s var(--ease-smooth) infinite;
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Slow drifting decorative blobs */
+  .drift {
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  .drift-slow {
+    animation: drift 32s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(2.2%, -2.8%, 0) scale(1.06);
+    }
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 3.4s var(--ease-smooth) infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.92);
+      opacity: 0.75;
+    }
+    70% {
+      transform: scale(1.18);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.18);
+      opacity: 0;
+    }
+  }
+
+  /* Gentle continuous float for hero accent cards */
+  .float {
+    animation: float 7s var(--ease-smooth) infinite;
+  }
+
+  .float-slow {
+    animation: float 10s var(--ease-smooth) infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -0.55rem, 0);
+    }
+  }
+
+  /* Fine dot grid used as a hero texture */
+  .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgba(22, 71, 123, 0.13) 1px,
+      transparent 1.2px
+    );
+    background-size: 24px 24px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-timeline: none !important;
+  }
+}

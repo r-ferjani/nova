@@ -1,0 +1,37 @@
+{
+  "name": "nova-prime-services",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilingual (DA/EN) premium website for NOVA PRIME SERVICES ApS",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "lucide-react": "^0.474.0",
+    "motion": "^12.0.5",
+    "next": "^15.5.27",
+    "nodemailer": "^6.9.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.7",
+    "@types/nodemailer": "^6.4.17",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "playwright": "^1.64.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true
+  }
+}
